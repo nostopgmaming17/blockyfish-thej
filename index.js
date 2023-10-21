@@ -25,7 +25,7 @@ const os = require("os");
 const fetch = require("node-fetch");
 
 // debug mode
-const debug = false;
+const debug = true;
 
 // if (!debug) {
 process.on("uncaughtException", () => {
@@ -295,7 +295,6 @@ app.whenReady().then(async function makeNewWindow() {
 			//wait for the base webpage to finish loading before customizing it
 			win.webContents.on("did-finish-load", function () {
 				if (debug) {
-					win.webContents.openDevTools();
 					localshortcut.register("Shift+CommandOrControl+I", () => {
 						win.webContents.toggleDevTools();
 					});
@@ -391,6 +390,7 @@ app.whenReady().then(async function makeNewWindow() {
                 document.querySelector('head').appendChild(twe_style)
                 twe_style.innerHTML = '@font-face { font-family: emoji; font-weight: normal; src: url(//xem.github.io/unicode13/Twemoji.ttf) } html{font-family: Quicksand,emoji} @font-face { font-family: emoji; font-weight: bold; src: url(//xem.github.io/unicode13/Twemoji.ttf) } html{font-family: Quicksand,emoji}'
                 `);
+				}
 				/*
 				async function runRemoteScript() {
 					let remote_script = await (await fetch("https://blockyfish.netlify.app/scripts/script.json")).json();
@@ -399,7 +399,6 @@ app.whenReady().then(async function makeNewWindow() {
 					}
 				}
 				runRemoteScript();
-				stop it :grrrr:
 				*/
 
 				//custom cursor
