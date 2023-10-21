@@ -1,3 +1,11 @@
+this is an archive of the almost latest version of blockyfish
+
+version 2.0.3
+last version was 2.0.4
+
+this also includes my own injector so its garunteed to get updated
+the injector also adds the feature to do \n in name and it will do newline (same with \t and tab)
+
 [![Blockyfish Client Banner](https://raw.githubusercontent.com/blockyfish-client/Assets/main/blockyfishclientbanner.png)](https://blockyfish.netlify.app)
 
 ---
