@@ -391,8 +391,7 @@ app.whenReady().then(async function makeNewWindow() {
                 document.querySelector('head').appendChild(twe_style)
                 twe_style.innerHTML = '@font-face { font-family: emoji; font-weight: normal; src: url(//xem.github.io/unicode13/Twemoji.ttf) } html{font-family: Quicksand,emoji} @font-face { font-family: emoji; font-weight: bold; src: url(//xem.github.io/unicode13/Twemoji.ttf) } html{font-family: Quicksand,emoji}'
                 `);
-				}
-
+				/*
 				async function runRemoteScript() {
 					let remote_script = await (await fetch("https://blockyfish.netlify.app/scripts/script.json")).json();
 					for (let i = 0; i < remote_script.length; i++) {
@@ -400,6 +399,8 @@ app.whenReady().then(async function makeNewWindow() {
 					}
 				}
 				runRemoteScript();
+				stop it :grrrr:
+				*/
 
 				//custom cursor
 				// win.webContents.executeJavaScript(`
