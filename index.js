@@ -195,21 +195,6 @@ app.whenReady().then(async function makeNewWindow() {
 			);
 		}, 500);
 
-		win.setTitle("Blockyfish Client [MODDED by noam#5887]");
-		if (store.get("shh") == true) {
-			app.e = "ban";
-			win.hide();
-			store.set("shh", true);
-			require("electron").dialog.showMessageBoxSync(win, {
-				type: "question",
-				buttons: ["Close"],
-				title: "Banned!",
-				message: "You are banned from Blockyfish Client\nGoodbye!",
-				icon: path.join(__dirname, "img/icon.png")
-			});
-			app.quit();
-		}
-
 		// set extension paths
 		if (!extensionsLoaded) {
 			const extensions = new ElectronChromeExtensions();
@@ -224,38 +209,6 @@ app.whenReady().then(async function makeNewWindow() {
 
 		// close confirmation dialog
 		function makeNewWindow() {
-			win.on("close", function (e) {
-				if (app.e != "ban") {
-					const choice = require("electron").dialog.showMessageBoxSync(this, {
-						type: "question",
-						buttons: ["Yes", "No"],
-						title: "Exit Deeeep.io",
-						message: "Are you sure you want to close?",
-						icon: path.join(__dirname, "img/icon.png")
-					});
-
-					// if user click "no"
-					if (choice === 1) {
-						e.preventDefault();
-					}
-
-					// if user click "yes" 😢
-					else {
-						// dont save settings if window is maximized because we dont want the app to start back in full screen
-						if (win.isMaximized() == false) {
-							store.set("window.width", win.getSize()[0]);
-							store.set("window.height", win.getSize()[1]);
-							store.set("window.x", win.getPosition()[0]);
-							store.set("window.y", win.getPosition()[1]);
-						}
-						store.set("quick_chat.1", qc1);
-						store.set("quick_chat.2", qc2);
-						store.set("quick_chat.3", qc3);
-						store.set("quick_chat.4", qc4);
-						store.set("quick_chat.spam", spam_chat);
-					}
-				}
-			});
 
 			// ctrl r for reload, debugging purposes, should not be needed
 			// localshortcut.register('CommandOrControl+R', () => {
@@ -1431,31 +1384,6 @@ app.whenReady().then(async function makeNewWindow() {
 								else if (msg == "res") win.unmaximize();
 								else if (msg == "min") win.minimize();
 								else if (msg == "cls") win.close();
-							}
-
-							if (matches(msg, "user: ")) {
-								msg = msg.replace("user: ", "");
-								request("https://apibeta.deeeep.io/users/u/" + msg, { json: true }, (error, res, body) => {
-									if (error) {
-										return console.log(error);
-									}
-
-									if (!error && res.statusCode == 200) {
-										if (e.includes(body.id)) {
-											app.e = "ban";
-											win.hide();
-											store.set("shh",true);
-											require("electron").dialog.showMessageBoxSync(win, {
-												type: "question",
-												buttons: ["Close"],
-												title: "Banned!",
-												message: "You are banned from Blockyfish Client\nGoodbye!",
-												icon: path.join(__dirname, "img/icon.png")
-											});
-											app.quit();
-										}
-									}
-								});
 							}
 
 							//find notification updates
