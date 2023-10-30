@@ -1205,7 +1205,7 @@ app.whenReady().then(async function makeNewWindow() {
                             var download_ver = url_json.tag_name
                         }
                     }
-                    var ver_num = download_ver.replace("v", "").replace(".", "").replace(".", "")
+                    var ver_num = download_ver.replace(/[v\.]/g,"")
                     setTimeout(function() {
                         if (ver_num != ` +
 						version_num +
