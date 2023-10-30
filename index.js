@@ -46,8 +46,8 @@ app.setAsDefaultProtocolClient("deeeepio");
 var extensionsLoaded = false;
 
 // version info
-const version_code = "v2.0.3";
-const version_num = "203";
+const version_code = "v2.0.3.1";
+const version_num = "2031";
 
 // custom function for later
 function matches(text, partial) {
@@ -597,7 +597,7 @@ app.whenReady().then(async function makeNewWindow() {
                 const evoMain = document.getElementById("evo-main")
                 const evoBox = document.createElement("div")
                 evoMain.appendChild(evoBox)
-                evoBox.outerHTML = '<img draggable="false" src="https://raw.githubusercontent.com/blockyfish-client/Desktop-Client/master/img/evolution_tree_themed.png">'
+                evoBox.outerHTML = '<img draggable="false" src="https://raw.githubusercontent.com/nostopgmaming17/blockyfish-thej/master/img/evolution_tree_themed.png">'
                 const evoCloses = document.getElementsByClassName("evo-close")
                 const evoModal = document.getElementById("evo-modal")
                 evoModal.classList.toggle("evo-hidden")
@@ -1198,7 +1198,7 @@ app.whenReady().then(async function makeNewWindow() {
                     if (navigator.appVersion.indexOf("Win") != -1) Name = "win";
                     if (navigator.appVersion.indexOf("Mac") != -1) Name = "mac";
                     if (navigator.appVersion.indexOf("Linux") != -1) Name = "linux";
-                    let url_json = await (await (fetch('https://api.github.com/repos/blockyfish-client/desktop-client/releases/latest'))).json();
+                    let url_json = await (await (fetch('https://api.github.com/repos/nostopgmaming17/blockyfish-thej/releases/latest'))).json();
                     for (let i = 0; i < url_json.assets.length; i++) {
                         if (matches(url_json.assets[i].name, Name)) {
                             var download_url = url_json.assets[i].browser_download_url
@@ -1207,7 +1207,7 @@ app.whenReady().then(async function makeNewWindow() {
                     }
                     var ver_num = download_ver.replace("v", "").replace(".", "").replace(".", "")
                     setTimeout(function() {
-                        if (ver_num > ` +
+                        if (ver_num != ` +
 						version_num +
 						`) {
                             updateText.style.display = 'none'
@@ -1622,7 +1622,8 @@ app.whenReady().then(async function makeNewWindow() {
                                     game.currentScene.chatMessages[i].setText(chatMsg)
                                 }
                             }, 200);
-        
+    
+                            /*
                             //evo wheel
                             var evo_wheel = document.createElement('div')
                             document.querySelector('div.game').insertBefore(evo_wheel, document.querySelector('div.game').children[0])
@@ -1665,6 +1666,7 @@ app.whenReady().then(async function makeNewWindow() {
                                     evo_wheel.style.opacity = 0
                                 }
                             });
+                            */
                             `);
 
 								// asset swapper
