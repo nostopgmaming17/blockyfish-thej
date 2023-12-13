@@ -1,0 +1,16 @@
+{
+    "manifest_version": 2,
+    "name": "Deep injector",
+    "version": "1",
+    "content_scripts": [
+        {
+            "matches": ["https://beta.deeeep.io/*"],
+            "run_at":"document_start",
+            "js": ["main.js"]
+        }
+    ],
+    "permissions": [
+        "activeTab",
+        "https://beta.deeeep.io/*"
+    ]
+}

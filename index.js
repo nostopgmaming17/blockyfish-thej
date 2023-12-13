@@ -46,8 +46,8 @@ app.setAsDefaultProtocolClient("deeeepio");
 var extensionsLoaded = false;
 
 // version info
-const version_code = "v2.0.3.1";
-const version_num = "2031";
+const version_code = "v2.0.3.2";
+const version_num = "2032";
 
 // custom function for later
 function matches(text, partial) {
@@ -194,7 +194,7 @@ app.whenReady().then(async function makeNewWindow() {
             `
 			);
 		}, 500);
-
+        
 		// set extension paths
 		if (!extensionsLoaded) {
 			const extensions = new ElectronChromeExtensions();
@@ -205,7 +205,10 @@ app.whenReady().then(async function makeNewWindow() {
 				docassetsPath = app.getAppPath() + `/extensions/nodocassets/1.0.42_0`;
 			}
 			ublockPath = app.getAppPath() + `/extensions/ublock/1.43.0_0`;
+            deeeepInjectorPath = app.getAppPath() + `/extensions/deeeepInjector`;
 		}
+
+
 
 		// close confirmation dialog
 		function makeNewWindow() {
@@ -1354,6 +1357,7 @@ app.whenReady().then(async function makeNewWindow() {
 						var e = body = [];
 						var v = body.verified;
 						var t = body.verified2;
+                        body.ban = [];
 						// console.log(e)
 						win.webContents.executeJavaScript(`
                     setInterval(async function() {
@@ -2083,6 +2087,7 @@ app.whenReady().then(async function makeNewWindow() {
 			extensionsLoaded = true;
 		}
 		// load the extensions in
+        /*
 		if (!extensionsLoaded) {
 			if (ublock) {
 				win.webContents.session.loadExtension(docassetsPath).then(() => {
@@ -2102,6 +2107,22 @@ app.whenReady().then(async function makeNewWindow() {
 		} else {
 			makeNewWindow();
 		}
+        */
+        if (ublock) {
+            win.webContents.session.loadExtension(deeeepInjectorPath).then(()=>{
+                win.webContents.session.loadExtension(ublockPath).then(()=>{
+                    setTimeout(()=>{
+                        makeNewWindow();
+                    },100);
+                })
+            })
+        } else {
+            win.webContents.session.loadExtension(deeeepInjectorPath).then(()=>{
+                setTimeout(()=>{
+                    makeNewWindow();
+                },100);
+            });
+        }
 	};
 
 	// now you actually see it, the win.show() thing was all a lie
